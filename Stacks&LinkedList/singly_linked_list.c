@@ -71,6 +71,13 @@ int deleteParticularElement(int el)
 {
   if (start == NULL)
     return 0;
+
+  if (start->data == el)
+  { // if the element to be deleted is the first element
+    start = (start->link) ? start->link : NULL;
+    return 1;
+  }
+
   struct node *temp = start;
 
   while (temp)
@@ -103,7 +110,7 @@ void main()
 
   while (1)
   {
-    printf("\n\nQueue operations:\n");
+    printf("\n\nLinked List Operations:\n");
     printf("1.Insert node at the beginning\n2.Insert node at the end\n3.Insert node after a particular element\n4.Delete node containing a particular element\n5.Display\n6.Exit\n");
     printf("Enter choice: ");
     scanf("%d", &ch);
