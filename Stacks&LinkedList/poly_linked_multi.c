@@ -19,6 +19,7 @@ void insert(int c, int e, struct node **start)
   newNode->coeff = c;
   newNode->exp = e;
   newNode->link = NULL;
+
   if (*start == NULL)
   {
     *start = newNode;
@@ -59,49 +60,50 @@ void attach(struct node **ptr, int c, int e)
   *ptr = newNode;
 }
 
-void addPolynomial(struct node *a, struct node *b, struct node **c)
+void combine()
+{
+  struct node *t3 = cStart;
+  struct node *temp = malloc(sizeof(struct node));
+  struct node *prev = malloc(sizeof(struct node));
+
+  for (; t3; t3 = t3->link)
+  {
+    for (temp = t3->link; temp; temp = temp->link)
+    {
+      if (t3->exp == temp->exp)
+      {
+        t3->coeff = t3->coeff + temp->coeff;
+        temp->coeff = 0;
+      }
+      prev = temp;
+    }
+  }
+
+}
+
+void multiplyPolynomial(struct node *a, struct node *b, struct node **c)
 {
   struct node *t1 = a;
   struct node *t2 = b;
   struct node *t3 = malloc(sizeof(struct node));
   *c = t3;
 
-  while (t2 && t1)
-  {
-    switch (compare(t1->exp, t2->exp))
-    {
-    case 1:
-      attach(&t3, t1->coeff, t1->exp);
-      t1 = t1->link;
-      break;
-    case 0:
-      attach(&t3, t1->coeff + t2->coeff, t1->exp);
-      t1 = t1->link;
-      t2 = t2->link;
-      break;
-    case -1:
-      attach(&t3, t2->coeff, t2->exp);
-      t2 = t2->link;
-      break;
-    }
-  }
   while (t1)
   {
-    attach(&t3, t1->coeff, t1->exp);
+    t2 = b;
+    while (t2)
+    {
+      attach(&t3, t1->coeff * t2->coeff, t1->exp + t2->exp);
+      t2 = t2->link;
+    }
     t1 = t1->link;
   }
-  while (t2)
-  {
-    attach(&t3, t2->coeff, t2->exp);
-    t2 = t2->link;
-  }
-  t3->link = NULL;
 
-  struct node *temp = malloc(sizeof(struct node));
-  temp = *c;
+  t3->link = NULL;
+  struct node *temp = *c;
   *c = (*c)->link;
-  // putting the start to the second node since there is no data in the first node. only link is present
   free(temp);
+  combine();
 }
 
 void display(struct node *start)
@@ -128,10 +130,10 @@ void main()
   readInput(&bStart);
   printf("Polynomial A is:\n");
   display(aStart);
-  printf("Polynomial B is:\n");
+  printf("\nPolynomial B is:\n");
   display(bStart); //passing by value
 
-  addPolynomial(aStart, bStart, &cStart);
-  printf("\nAfter addition:\n");
+  multiplyPolynomial(aStart, bStart, &cStart);
+  printf("\nAfter Multiplication:\n");
   display(cStart);
 }

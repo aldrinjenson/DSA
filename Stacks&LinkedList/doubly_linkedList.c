@@ -52,7 +52,7 @@ void insertAtEnd(int num)
   newNode->prev = temp;
 }
 
-int insertAtPosition(int num, int pos)
+int insertAtPosition(int num, int el)
 {
   struct node *newNode = malloc(sizeof(struct node));
   newNode->data = num;
@@ -61,7 +61,7 @@ int insertAtPosition(int num, int pos)
   struct node *temp = start;
   while (temp)
   {
-    if (temp->data == pos)
+    if (temp->data == el)
     {
       newNode->next = temp->next;
       temp->next = newNode;
@@ -135,18 +135,17 @@ void main()
         printf("List empty. Aborting..");
         break;
       }
-      int pos;
       printf("Enter item to be inserted: ");
       scanf("%d", &item);
-      printf("Enter position after which item is to be inserted(1,2,3..): ");
-      scanf("%d", &pos);
-      res = insertAtPosition(item, pos);
+      printf("Enter element after which item is to be inserted");
+      scanf("%d", &el);
+      res = insertAtPosition(item, el);
       if (!res)
       {
-        printf("List is smaller than %d\n", pos);
+        printf("No such emlement exists");
         break;
       }
-      printf("%d inserted at %d\n", item, pos);
+      printf("%d inserted\n", item);
       display();
       break;
 
