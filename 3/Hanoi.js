@@ -8,10 +8,11 @@ const TowerOfHanoi = (n, from_rod, to_rod, aux_rod) => {
     console.log("Move disk " + n + " from " + from_rod + " to " + to_rod);
     return;
   }
-  TowerOfHanoi(n-1,from_rod,aux_rod,to_rod);
+  TowerOfHanoi(n - 1, from_rod, aux_rod, to_rod);
   console.log("Move disk " + n + " from " + from_rod + " to here" + to_rod);
-  TowerOfHanoi(n-1,aux_rod,to_rod, from_rod);
+  TowerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
 };
 
 let n = 4;
+
 TowerOfHanoi(n, "A", "C", "B");

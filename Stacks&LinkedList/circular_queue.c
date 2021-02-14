@@ -1,4 +1,4 @@
-// Program to Implement Queue using arrays
+// Program to Implement circular Queue using arrays
 #include <stdio.h>
 #define MAXLENGTH 5
 

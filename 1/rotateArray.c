@@ -1,3 +1,4 @@
+// Program to rotate an array by the entered amount
 #include <stdio.h>
 void main()
 {
@@ -6,7 +7,7 @@ void main()
     scanf("%d", &size);
     for (i = 0; i < size; i++)
         scanf("%d", &a[i]);
-    printf("Enter roating amount: ");
+    printf("Enter rotating amount: ");
     scanf("%d", &n);
 
     printf("\nEntered array:  ");
