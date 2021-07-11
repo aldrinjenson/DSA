@@ -10,7 +10,8 @@ unsigned long int fact(int n)
 void main()
 {
     int n;
-    printf("Enter a number: ");
-    scanf("%d", &n);
+    // printf("Enter a number: ");
+    // scanf("%d", &n);
+    n = 65;
     printf("Factorial of %d = %lu\n", n, fact(n));
 }

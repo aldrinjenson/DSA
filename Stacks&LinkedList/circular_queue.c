@@ -42,10 +42,12 @@ int delete ()
     front = 0;
     rear = 0;
   }
-  else if (front == MAXLENGTH - 1)
-    front = 0;
-  else
-    front++;
+  front = (front + 1) % MAXLENGTH;
+  // or
+  // else if (front == MAXLENGTH - 1)
+  //   front = 0;
+  // else
+  //   front++;
   return deletedeElem;
 }
 

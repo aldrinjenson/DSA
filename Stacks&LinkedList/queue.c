@@ -6,51 +6,97 @@ int Queue[MAXLENGTH];
 int front = -1;
 int rear = -1;
 
+int isEmpty()
+{
+  return (front == -1);
+}
+
 int insert(int n)
 {
   if (rear == MAXLENGTH - 1)
-    return 0;
-  if (rear == -1)
-    front = rear = 0;
-  else
-    rear += 1;
-  Queue[rear] = n;
-}
-
-int delete ()
-{
-  if (front == -1)
-    return 0;
-  int item = Queue[front];
-  if (rear == front) // if only one item in queue
   {
-    rear = -1;
-    front = -1;
+    return -1;
+  }
+  else if (rear == -1)
+  {
+    front = rear = 0;
   }
   else
-    front++;
+  {
+    rear++;
+  }
+  Queue[rear] = n;
+}
+int delete ()
+{
+  if (isEmpty())
+  {
+    return -1;
+  }
+  int item = Queue[front--];
   return item;
 }
-
-int showFrontElement(int n)
+int showFrontElement()
 {
-  if (front == -1)
-    return 0;
+  if (isEmpty())
+  {
+    return -1;
+  }
   return Queue[front];
 }
-
-int isEmpty()
+int display()
 {
-  return front == -1;
-}
-
-void display()
-{
-  if (front == -1)
-    return;
   for (int i = front; i <= rear; i++)
-    printf("%d\n", Queue[i]);
+  {
+    printf("%d, ", Queue[i]);
+  }
 }
+
+// int insert(int n)
+// {
+//   if (rear == MAXLENGTH - 1)
+//     return 0;
+//   if (rear == -1)
+//     front = rear = 0;
+//   else
+//     rear += 1;
+//   Queue[rear] = n;
+// }
+
+// int delete ()
+// {
+//   if (front == -1)
+//     return 0;
+//   int item = Queue[front];
+//   if (rear == front) // if only one item in queue
+//   {
+//     rear = -1;
+//     front = -1;
+//   }
+//   else
+//     front++;
+//   return item;
+// }
+
+// int showFrontElement()
+// {
+//   if (front == -1)
+//     return 0;
+//   return Queue[front];
+// }
+
+// int isEmpty()
+// {
+//   return front == -1;
+// }
+
+// void display()
+// {
+//   if (front == -1)
+//     return;
+//   for (int i = front; i <= rear; i++)
+//     printf("%d\n", Queue[i]);
+// }
 
 void main()
 {
@@ -89,7 +135,7 @@ void main()
       break;
 
     case 3:
-      res = showFrontElement(item);
+      res = showFrontElement();
       if (!res)
       {
         printf("Stack Empty. Aborting");

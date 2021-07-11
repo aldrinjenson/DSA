@@ -10,12 +10,16 @@ void swap(int *a, int *b)
 
 void merge(int a[], int first, int mid, int last) //To combine the sorted sections
 {
+  // create a temporary array B
+  // mergeSort the two arrays -> 1 from first to mid and 2 from mid to end, into this new array B
+  // transfer the values from this b array into the one big array from first to last
+
   int b[MAX];
-  int j, lpt, upt, n;
+  int j, lpt, upt;
   j = 0;
   lpt = first;
   upt = mid + 1;
-  n = last - first + 1;
+
   while (lpt < mid + 1 && upt < last + 1)
   {
     if (a[lpt] < a[upt])
@@ -45,10 +49,11 @@ void merge(int a[], int first, int mid, int last) //To combine the sorted sectio
     j++;
   }
 
+  // copy the contents and place it in the main array
   lpt = first;
-  for (j = 0; j < n; j++)
+  for (int k = 0; k < j; k++)
   {
-    a[lpt] = b[j];
+    a[lpt] = b[k];
     lpt++;
   }
 }
@@ -76,3 +81,4 @@ void main()
     printf("%d ", a[i]);
   printf("\n");
 }
+// cool!

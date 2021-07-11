@@ -19,14 +19,27 @@ Node *createNode(int data)
   return newNode;
 }
 
+// Node *addNode(Node *node, int newData)
+// {
+//   if (!node)
+//     return createNode(newData);
+
+//   if (newData < node->data)
+//     node->left = addNode(node->left, newData);
+//   else if (newData > node->data)
+//     node->right = addNode(node->right, newData);
+
+//   return node;
+// }
+
 Node *addNode(Node *node, int newData)
 {
   if (!node)
-    return createNode(newData);
+    node = createNode(newData);
 
-  if (newData < node->data)
+  else if (newData < node->data)
     node->left = addNode(node->left, newData);
-  else if (newData > node->data)
+  else
     node->right = addNode(node->right, newData);
 
   return node;
@@ -62,8 +75,9 @@ Node *deleteNode(Node *node, int data)
   {
     if (!node->left && !node->right)
     {
+      Node *temp = node;
       node = NULL;
-      printf("Leaf node");
+      free(temp);
     }
     else if (!node->right)
     {
