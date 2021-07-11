@@ -1,18 +1,16 @@
-let obj = {
-  0: 0,
-  1: 1,
-};
 const fib = (n) => {
-  if (!obj.hasOwnProperty(n)) {
-    obj[n] = fib(n - 1) + fib(n - 2);
+  if (n == 0 || n == 1) {
+    return n;
   }
-  return obj[n];
+  return fib(n - 1) + fib(n - 2);
 };
 
-const num = 1000;
+const num = 38;
 
-for (let i = 0; i < num; i++) {
-  console.log(fib(i), " ");
+for (let i = 0; i <= num; i++) {
+  // fib(i);
+  console.log(`fib(${i}) = `, fib(i));
 }
+// console.log(obj);
 
-console.log(obj)
+// takes 5.934 seconds to calculate till fib(38)
